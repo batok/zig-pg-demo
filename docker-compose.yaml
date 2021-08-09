@@ -1,0 +1,19 @@
+version: '3.1'
+
+networks:
+  fullcircle-net:
+    driver: bridge
+
+services:
+
+  db:
+    image: postgres
+    container_name: zig-pg-demo
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "25432:5432"
+    networks:
+      - zig-pg-demo-net
+
