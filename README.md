@@ -1,7 +1,8 @@
 # Zig program accessing Postgresql using libpq C library 
 
 ## Docker to run postgresql to test this program. 
-Open a terminal window an run ...
+
+### Open a terminal window and run ...
 ```bash
 docker-compose up
 ```
