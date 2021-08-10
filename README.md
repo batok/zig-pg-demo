@@ -1,6 +1,6 @@
 # Zig program accessing Postgresql using libpq C library 
 
-## Docker to run postgresql to test this program. 
+## Command to run postgresql server in docker with port 25432.
 
 ### Open a terminal window and run ...
 ```bash
