@@ -33,5 +33,7 @@ zig build-exe -lc -l pq -L/usr/local/Cellar/libpq/13.3/lib/ -I/usr/local/Cellar/
 ## Run the program
 ```bash
 ./zig-pg-demo 127.0.0.1 25432 postgres postgres postgres
+
+### Previous command stands for ./zig-pg-demo <host> <port> <user> <password> <database>
 ```
 
