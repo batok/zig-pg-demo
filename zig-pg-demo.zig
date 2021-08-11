@@ -27,14 +27,27 @@ pub fn main() !void {
         warn("Connection failed\n{s}\n", .{message});
         process.exit(1);
     }
-    var res = c.PQexec(conn, "SELECT VERSION()");
+    query_and_display(conn, "SELECT VERSION()");
+    query_and_display(conn, "SELECT schemaname, tablename, tableowner from pg_tables");
+}
+
+fn query_and_display(conn: ?*c.PGconn, query: [*c]const u8) void {
+    var res = c.PQexec(conn, query);
     defer c.PQclear(res);
+    const row_count = c.PQntuples(res);
+    const field_count = c.PQnfields(res);
     if (@enumToInt(c.PQresultStatus(res)) != c.PGRES_TUPLES_OK) {
         warn("No data retrieved\n", .{});
         process.exit(1);
     }
-    var result = c.PQgetvalue(res, 0, 0);
-    warn("{s}\n", .{result});
+    var i: c_int = 0;
+    while (i < row_count) : (i += 1) {
+        var j: c_int = 0;
+        while (j < field_count) : (j += 1) {
+            warn("{s}\t", .{c.PQgetvalue(res, i, j)});
+        }
+        warn("\n", .{});
+    }
 }
 
 fn usage(exe: []const u8) void {
