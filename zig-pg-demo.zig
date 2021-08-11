@@ -28,7 +28,7 @@ pub fn main() !void {
         process.exit(1);
     }
     query_and_display(conn, "SELECT VERSION()");
-    query_and_display(conn, "SELECT schemaname, tablename, tableowner from pg_tables");
+    query_and_display(conn, "SELECT schemaname, tablename, tableowner from pg_tables LIMIT 7");
 }
 
 fn query_and_display(conn: ?*c.PGconn, query: [*c]const u8) void {
