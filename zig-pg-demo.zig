@@ -44,7 +44,7 @@ fn query_and_display(conn: ?*c.PGconn, query: [*c]const u8) void {
     while (i < row_count) : (i += 1) {
         var j: c_int = 0;
         while (j < field_count) : (j += 1) {
-            warn("{s}\t", .{c.PQgetvalue(res, i, j)});
+            warn("{s: <25}", .{c.PQgetvalue(res, i, j)});
         }
         warn("\n", .{});
     }
